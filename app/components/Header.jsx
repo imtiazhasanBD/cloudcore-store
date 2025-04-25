@@ -6,9 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
   const cart = useSelector(state => state.cart.items);
-  const dispatch = useDispatch();
-  console.log(cart);
-  
 
   return (
     <header className="bg-green-700 flex justify-between sm:gap-10 items-center sm:px-12 py-3 sticky top-0 z-40 px-5 max-w-[1400px] mx-auto">
@@ -36,7 +33,9 @@ const Header = () => {
           <span className="relative">
             <BsCart3 className="text-2xl" />
             <span className="px-1 bg-red-500 rounded-full text-xs absolute bottom-3 left-3">
-              {cart.length || 0}
+            {cart.length === 0
+                  ? 0
+                  : cart.length}
             </span>
           </span>
           <p className="hidden md:block">Cart</p>

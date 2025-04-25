@@ -21,6 +21,14 @@ export const UpdateQty = createAsyncThunk(
   }
 );
 
+// Remove quantity action
+export const RemoveQuantity = createAsyncThunk(
+  "products/remove_quantity",
+  async (id) => {
+    return id;
+  }
+);
+
 // Remove from Cart action
 export const RemoveFromCart = createAsyncThunk(
   "products/remove_from_cart",
@@ -57,6 +65,14 @@ const cartSlice = createSlice({
       .addCase(UpdateQty.fulfilled, (state,action) =>  {
         const item = state.items.find(i => i.id === action.payload.id);
         if (item) item.qty = action.payload.qty;
+      })
+      .addCase(RemoveQuantity.fulfilled, (state, action) => {
+        const product = state.items.find(
+          (product) => product.id === action.payload
+        );
+        if (product && product.qty > 1) {
+          product.qty -= 1;
+        }
       })
       .addCase(RemoveFromCart.fulfilled, (state,action) => {
         state.items = state.items.filter(i => i.id !== action.payload);
