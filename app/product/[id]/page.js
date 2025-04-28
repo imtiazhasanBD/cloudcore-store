@@ -7,7 +7,7 @@ import ProductDetails from "@/app/components/ProductDetails";
 import Product from "@/app/components/Product";
 import Loading from "@/app/loading";
 
-export default function page() {
+export default function ProductPage() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [relatedProduct, setRelatedProduct] = useState(null);
@@ -25,7 +25,7 @@ export default function page() {
       );
       setRelatedProduct(relatedProduct);
     }
-  }, [id, product]);
+  }, [id, product,products]);
 
   console.log(product);
   

@@ -12,7 +12,7 @@ const ProtectedRoute = ({ children }) => {
         router.push('/');
       }
       // You could also verify the order ID exists in your database
-    }, [orderId]);
+    }, [orderId,router]);
     return orderId ? children : null;
 };
 
