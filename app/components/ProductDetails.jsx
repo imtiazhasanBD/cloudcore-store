@@ -2,8 +2,9 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import { AddToCart, RemoveQuantity } from "../features/cart/cartSlice";
 import { IoCheckmarkSharp } from "react-icons/io5";
+import { useAddToCart } from "../utility/AddToCart";
+import { useRemoveQuantity } from "../utility/RemoveQuantity";
 
 const ProductDetails = ({ product }) => {
   const [selectedColor, setSelectedColor] = useState("Black");
@@ -24,10 +25,8 @@ const ProductDetails = ({ product }) => {
     }
   }, [cart]);
 
-  const handleAddToCart = () => {
-    dispatch(AddToCart(product));
-    alert("Product added to cart successfully");
-  };
+  const addToCart = useAddToCart();
+  const removeQuantity = useRemoveQuantity();
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -145,7 +144,7 @@ const ProductDetails = ({ product }) => {
                   onClick={() => setSelectedSize(size)}
                   className={`py-2 px-3 border rounded-md text-center ${
                     selectedSize === size
-                      ? "bg-green-700 text-white border-green-600"
+                      ? "bg-green-700 text-white border-green-700"
                       : "border-gray-300"
                   } cursor-pointer`}
                 >
@@ -160,7 +159,7 @@ const ProductDetails = ({ product }) => {
             <h2 className="text-sm font-medium text-gray-900">Quantity</h2>
             <div className="mt-2 flex items-center">
               <button
-                onClick={() => dispatch(RemoveQuantity(product.id))}
+                onClick={() => removeQuantity(product.id)}
                 className={`p-2 border border-gray-300 rounded-l-md ${
                   quantity == 1 ? "text-gray-300" : "text-gray-900"
                 } cursor-pointer`}
@@ -171,7 +170,7 @@ const ProductDetails = ({ product }) => {
                 {quantity}
               </div>
               <button
-                onClick={handleAddToCart}
+                onClick={() => addToCart(product)}
                 className="p-2 border border-gray-300 rounded-r-md cursor-pointer"
               >
                 +
@@ -181,10 +180,10 @@ const ProductDetails = ({ product }) => {
 
           {/* Add to Cart */}
           <div className="mt-8 flex gap-4">
-            <button onClick={handleAddToCart} className="flex-1 bg-green-700 text-white py-3 px-8 rounded-md font-medium hover:bg-green-800 focus:outline-none focus:ring-2 cursor-pointer">
+            <button onClick={() => addToCart(product)} className="flex-1 bg-green-700 text-white py-3 px-8 rounded-md font-medium hover:bg-green-800 focus:outline-none focus:ring-2 cursor-pointer">
               Add to Cart
             </button>
-            <button className="flex-1 bg-white text-green-600 py-3 px-8 rounded-md font-medium border border-green-600 hover:bg-green-50 focus:outline-none cursor-pointer">
+            <button className="flex-1 bg-white text-green-700 py-3 px-8 rounded-md font-medium border border-green-700 hover:bg-green-50 focus:outline-none cursor-pointer">
               Buy Now
             </button>
           </div>

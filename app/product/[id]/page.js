@@ -35,7 +35,7 @@ export default function page() {
       <ProductDetails product={product} />
 
       <section className="mt-10">
-        <h2 className="text-2xl font-bold mb-6 border-b-2 border-b-green-600 pb-2">
+        <h2 className="text-2xl font-bold mb-6 border-b-2 border-b-green-700 pb-2">
           Related Products
         </h2>
         {/* Releted Products Add section */}
