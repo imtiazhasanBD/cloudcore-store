@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../features/products/productSlice";
 import { useEffect } from "react";
 import Product from "./Product";
+import Loading from "../loading";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -13,8 +14,8 @@ const Products = () => {
     dispatch(fetchProducts());
   }, []);
   
-  if(!products.data){
-    return "loading..."
+  if(!products.data) {
+    return <Loading/>
   }
   console.log(products.data);
 

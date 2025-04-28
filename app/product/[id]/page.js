@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import ProductDetails from "@/app/components/ProductDetails";
 import Product from "@/app/components/Product";
+import Loading from "@/app/loading";
 
 export default function page() {
   const { id } = useParams();
@@ -28,7 +29,7 @@ export default function page() {
 
   console.log(product);
   
-  if (!product) return <div>Loading...</div>;
+  if (!product) return <Loading/>;
 
   return (
     <div className="px-4 sm:px-8 md:px-12 lg:px-10 py-8 bg-white lg:mx-8 lg:mb-2">
