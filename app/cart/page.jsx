@@ -86,26 +86,21 @@ const page = () => {
               <h1 className="text-xl font-semibold p-2">Oder Summary</h1>
               <div className="flex justify-between items-center p-2">
                 <h1 className="">Sub Total ({totalItems} items)</h1>
-                <p>${totalPrice.toFixed(2)}</p>
+                <p>${(totalPrice + totalDiscount).toFixed(2)}</p>
               </div>
               <div className="flex justify-between items-center p-2">
                 <h1 className="">shipping</h1>
-                <p>${((totalPrice / 100) * 4).toFixed(2)}</p>
+                <p>$80</p>
               </div>
               <div className="flex justify-between items-center p-2 font-semibold border-b-2 border-dotted border-gray-200">
                 <h1 className="">Discount</h1>
-                <p>
-                  -$
-                  {totalPrice >= 500
-                    ? ((totalPrice / 100) * 10).toFixed(2)
-                    : ((totalPrice / 100) * 5).toFixed(2)}
-                </p>
+                <p>-{totalDiscount.toFixed(2)}</p>
               </div>
               <div className="flex justify-between items-center p-2 font-semibold text-xl">
                 <h1 className="">Sub Total</h1>
                 <p>
                   $
-                  {totalDiscount.toFixed(2)}
+                  {(totalPrice + 80).toFixed(2)}
                 </p>
               </div>
               <button
