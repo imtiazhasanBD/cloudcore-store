@@ -12,9 +12,8 @@ const page = () => {
   console.log(cart);
 
   const [totalPrice, setTotalPrice] = useState(0);
-  const [totalDiscount, setTotalDiscount] = useState(0); 
-  const [totalItems, setTotalItems] = useState(0); 
-
+  const [totalDiscount, setTotalDiscount] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
 
   useEffect(() => {
     const total = cart.reduce(
@@ -24,8 +23,7 @@ const page = () => {
     );
     setTotalPrice(total);
     const totalDiscount = cart.reduce(
-      (acc, product) =>
-        acc + (product.discount_amount * product.qty),
+      (acc, product) => acc + product.discount_amount * product.qty,
       0
     );
     setTotalDiscount(totalDiscount);
@@ -35,7 +33,7 @@ const page = () => {
       .reduce((total, qty) => total + qty, 0);
     setTotalItems(items);
   }, [cart]);
-  console.log(totalItems, totalPrice,totalDiscount);
+  console.log(totalItems, totalPrice, totalDiscount);
 
   return (
     <div className="max-w-[1400px] mx-auto">
@@ -63,7 +61,7 @@ const page = () => {
                 <tbody className="space-y-10 text-center">
                   {cart &&
                     cart.map((product) => (
-                     <CartProduct product={product} key={product.unique_id} />
+                      <CartProduct product={product} key={product.unique_id} />
                     ))}
                 </tbody>
               </table>
@@ -77,9 +75,13 @@ const page = () => {
             {/* Mobile screen*/}
 
             <div className="sm:hidden px-4 divide-y divide-gray-200 border-b border-t border-gray-200 mb-10">
-              {cart && cart.map((product) => 
-               <CartProductMobile product={product} key={product.unique_id}/>
-            )}
+              {cart &&
+                cart.map((product) => (
+                  <CartProductMobile
+                    product={product}
+                    key={product.unique_id}
+                  />
+                ))}
             </div>
 
             <div className="lg:w-[40%] w-full h-fit border border-gray-200 rounded p-5 space-y-2 text-sm bg-gray-50">
@@ -98,16 +100,13 @@ const page = () => {
               </div>
               <div className="flex justify-between items-center p-2 font-semibold text-xl">
                 <h1 className="">Sub Total</h1>
-                <p>
-                  $
-                  {(totalPrice + 80).toFixed(2)}
-                </p>
+                <p>${(totalPrice + 80).toFixed(2)}</p>
               </div>
-              <button
-                className="w-full p-2 bg-green-700 text-center text-white font-bold text-lg rounded cursor-pointer"
-              >
-                CheckOut
-              </button>
+              <Link href={"/checkout"}>
+                <button className="w-full p-2 bg-green-700 text-center text-white font-bold text-lg rounded cursor-pointer">
+                  CheckOut
+                </button>
+              </Link>
             </div>
           </section>
         ) : (

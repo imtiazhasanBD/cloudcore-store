@@ -47,7 +47,7 @@ const Header = () => {
         </button>
       </div>
 
-      <div className="gap-8 justify-center items-center text-lg text-white font-bold">
+      <div className="flex gap-8 justify-center items-center text-lg text-white font-bold">
         <button className="justify-center items-center gap-2 text-sm hidden sm:flex">
           <CgProfile className="text-3xl" />
           <p className="hidden md:block">Account</p>
